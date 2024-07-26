@@ -4,10 +4,12 @@ from firebase_admin import credentials, firestore
 import pandas as pd
 from random import randint
 import os
+import json
 
 # Initialize Firebase app
 if not firebase_admin._apps:
-    cred = credentials.Certificate('serviceKey.json')
+    firebase_secrets = st.secrets["firebase"]
+    cred = credentials.Certificate(firebase_secrets)
     firebase_admin.initialize_app(cred)
 
 # Firestore client
